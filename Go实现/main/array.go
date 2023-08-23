@@ -15,10 +15,23 @@ func main() {
 	}
 	fmt.Printf("Hello World!")
 	randomAccess(arr[:])
+	extend(arr[:], 7)
 }
 
 func randomAccess(nums []int) (randomNum int) {
 	randomIndex := rand.Intn(len(nums))
 	randomNum = nums[randomIndex]
 	return
+}
+
+func extend(nums []int, enlarge int) []int {
+	/*var res []int
+	copy(res, nums)
+	for i := len(nums); i < len(nums)+enlarge; i++ {
+		res[i] = 0
+	}*/
+	res := make([]int, len(nums)+enlarge)
+	copy(res, nums)
+	return res
+
 }

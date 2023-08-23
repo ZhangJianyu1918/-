@@ -19,7 +19,13 @@ def insert(nums: list[int], num: int, index: int):
 
 
 print(insert(nums,0,0))
-        
+
+def remove(nums:list[int],index:int):
+    for i in range(index,len(nums)-1):
+        nums[i] = nums[i+1]
+    return nums
+
+
 def a():
     ab = 1
     ba = 3
@@ -33,3 +39,7 @@ def b(num1,num2):
     return
 
 a()
+
+e = input('asdf')
+e.split()
+print(e)
