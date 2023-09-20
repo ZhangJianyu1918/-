@@ -58,34 +58,63 @@ print(type(n))
 print(type(n.to_list()))
 
 
+class ArrayStack():
+    def __init__(self) -> None:
+        self.stack: list[int] = []
+
+    def size(self) -> int:
+        return len(self.stack)
+    
+    def is_empty(self) -> bool:
+        return self.stack == []
+    
+    def push(self, item:int):
+        self.stack.append(item)
+
+    def pop(self) -> int:
+        if self.is_empty():
+            return None
+        else:
+            return self.stack.pop()
+        
+    def peek(self) -> int:
+        if self.is_empty():
+            return None
+        else:
+            re
+    
+
+
+
+
 class linkedListQueue:
     # realize queue based on linked list
 
     def __init__(self) -> None:
-        self.__front: Optional[ListNode] = None
-        self.__rear: Optional[ListNode] = None
+        self.front: Optional[ListNode] = None
+        self.rear: Optional[ListNode] = None
         self.__size: int = 0
 
     def size(self) ->int:
         return self.__size
     
     def is_empty(self) -> int:
-        return not self.__front
+        return not self.front
     
     def push(self, num: int):
         node = ListNode(num)
-        if self.__front == None:
+        if self.front == None:
             # if queue is empty, make front and rear each direction to this node
-            self.__front = node
-            self.__rear = node
+            self.front = node
+            self.rear = node
         else:
-            self.__rear.next = node
-            self.__rear = node
+            self.rear.next = node
+            self.rear = node
         self.__size += 1
 
     def pop(self) -> int:
         num = self.peek()
-        self.__front = self.__front.next
+        self.front = self.front.next
         self.__size -= 1
         return num
     
@@ -93,13 +122,13 @@ class linkedListQueue:
         if self.size() == 0:
             print('empty queue')
             return False
-        return self.__front.value
+        return self.front.value
     
     def to_list(self) -> list[int]:
         arr = []
-        while self.__front:
-            arr.append(self.__front)
-            self.__front = self.__front.next
+        while self.front:
+            arr.append(self.front)
+            self.front = self.front.next
         return arr
 
 # test code
@@ -132,29 +161,29 @@ print(len(queue))
 class LinkedListDoublyQueue:
     # realize DoublyQueue based on Doubly List
     def __init__(self) -> None:
-        self.__front: Optional[ListNode] = None
-        self.__rear: Optional[ListNode] = None
+        self.front: Optional[ListNode] = None
+        self.rear: Optional[ListNode] = None
         self.__size: int = 0
 
     def size(self):
         return self.__size
     
     def is_empty(self):
-        return not self.__front
+        return not self.front
     
     def push(self, num: int, is_front: bool):
         node = ListNode(num)
         if self.is_empty():
-            self.__front = node
-            self.__rear = node
+            self.front = node
+            self.rear = node
         elif is_front:
-            self.__front.prev = node
-            node.next = self.__front
-            self.__front = node
+            self.front.prev = node
+            node.next = self.front
+            self.front = node
         else:
-            self.__rear.next = node
-            node.prev = self.__rear
-            self.__rear = node
+            self.rear.next = node
+            node.prev = self.rear
+            self.rear = node
         self.__size += 1
 
     def push_frist(self,num:int):
@@ -167,19 +196,19 @@ class LinkedListDoublyQueue:
         if self.is_empty():
             return None
         elif is_front:
-            num = self.__front.value
-            node: Optional[ListNode] = self.__front.next
+            num = self.front.value
+            node: Optional[ListNode] = self.front.next
             if node != None:
                 node.prev = None
-                self.__front.next = None
-            self.__front = node
+                self.front.next = None
+            self.front = node
         else:
-            num = self.__rear.value
-            node: Optional[ListNode] = self.__rear.prev
+            num = self.rear.value
+            node: Optional[ListNode] = self.rear.prev
             if node != None:
                 node.next = None
-                self.__rear.prev = None
-            self.__rear = node
+                self.rear.prev = None
+            self.rear = node
         self.__size -= 1
         return num
     
@@ -190,14 +219,14 @@ class LinkedListDoublyQueue:
         return self.pop(False)
 
     def peek_frist(self):
-        return self.__front.value
+        return self.front.value
     
     def peek_last(self):
-        return self.__rear.value
+        return self.rear.value
     
     def to_array(self) -> list:
         arr = [0] * self.size()
-        node = self.__front
+        node = self.front
         for index in range(self.size()):
             arr[index] = node.value
             node = node.next
