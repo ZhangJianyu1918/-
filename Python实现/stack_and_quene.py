@@ -81,7 +81,7 @@ class ArrayStack():
         if self.is_empty():
             return None
         else:
-            re
+            return self.stack[0]
     
 
 
